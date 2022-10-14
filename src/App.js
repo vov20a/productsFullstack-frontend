@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+import Categories from './components/Categories';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import NotFoundPage from './pages/NotFoundPage';
+import Register from './pages/Register';
+import { fetchAuthMe, setStatus } from './redux/slices/authSlice';
+
+import './scss/app.scss';
 
 function App() {
+  //auto login
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(fetchAuthMe()).then(() => dispatch(setStatus('loaded')));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/categories/:title" element={<Home />} /> */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
