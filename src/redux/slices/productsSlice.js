@@ -1,15 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../axios';
 
 export const fetchProductsCount = createAsyncThunk(
   'products/fetchProductsCount',
-  async ({ categoryId }) => {
+  async ({ categoryId, search }) => {
     if (!categoryId) {
-      const { data } = await axios.get(`/products/count`);
+      const { data } = await axios.get(`/products/count/?search=${search}`);
       return data;
     } else {
-      const { data } = await axios.get(`/products/count/?categoryId=${categoryId}`);
+      const { data } = await axios.get(
+        `/products/count/?categoryId=${categoryId}&search=${search}`,
+      );
       return data;
     }
   },
@@ -17,16 +18,16 @@ export const fetchProductsCount = createAsyncThunk(
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async ({ startProduct, limit, categoryId }) => {
+  async ({ startProduct, limit, categoryId, sort, search }) => {
     if (!categoryId) {
-      const { data } = await axios.get(`/products/?startProduct=${startProduct}&limit=${limit}`);
-
+      const { data } = await axios.get(
+        `/products/?sort=${sort}&search=${search}&startProduct=${startProduct}&limit=${limit}`,
+      );
       return data;
     } else {
       const { data } = await axios.get(
-        `/products/categories/${categoryId}/?startProduct=${startProduct}&limit=${limit}`,
+        `/products/categories/${categoryId}/?sort=${sort}&search=${search}&startProduct=${startProduct}&limit=${limit}`,
       );
-
       return data;
     }
   },
@@ -36,24 +37,11 @@ const initialState = {
   products: [],
   productsStatus: 'loading',
   productsCount: 0,
-  currentPage: 1,
-  categoryId: 0,
 };
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {
-    setCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
-    },
-    setCategoryId(state, action) {
-      state.categoryId = action.payload;
-    },
-    setFilters(state, action) {
-      state.categoryId = Number(action.payload.categoryId);
-      state.currentPage = Number(action.payload.currentPage);
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchProducts.pending]: (state) => {
       state.productsStatus = 'loading';
@@ -82,5 +70,5 @@ const productsSlice = createSlice({
     },
   },
 });
-export const { setCurrentPage, setCategoryId, setFilters } = productsSlice.actions;
+
 export const productsReducer = productsSlice.reducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setCategoryId, setCurrentPage } from '../redux/slices/productsSlice';
+import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 
 // const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 

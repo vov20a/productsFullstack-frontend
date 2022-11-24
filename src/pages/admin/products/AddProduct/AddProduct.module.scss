@@ -1,0 +1,28 @@
+.root {
+    width: 100%;
+    padding: 10px;
+    margin: 10px auto !important;
+    box-shadow: none !important;
+  }
+  
+  .field {
+    margin-bottom: 20px !important;
+  }
+  
+  .title {
+    text-align: center !important;
+    font-weight: bold !important;
+    margin-bottom: 30px !important;
+  }
+  .error {
+    color: brown;
+    text-align: center !important;
+    font-weight: bold !important;
+    margin-bottom: 30px !important;
+  }
+  .button {
+    display: block !important;
+    margin: 20px auto !important;
+    width: 200px !important;
+  }
+  

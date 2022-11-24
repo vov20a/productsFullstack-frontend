@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataStatus, fetchAuth, selectIsAuth } from '../../redux/slices/authSlice';
 import Typography from '@mui/material/Typography';
@@ -15,6 +15,7 @@ const Login = () => {
   const loginStatus = useSelector(dataStatus);
   const errorLogin = loginStatus === 'error';
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const {
     register,
@@ -23,13 +24,14 @@ const Login = () => {
   } = useForm({
     defaultValues: {
       email: 'petr@mail.ru',
-      password: 1234,
+      password: '123456',
     },
     //valid after change somthing in form
     mode: 'onChange',
   });
 
   const onSubmit = async (values) => {
+    // console.log(values);
     const data = await dispatch(fetchAuth(values));
 
     if (!data.payload) {
@@ -40,12 +42,19 @@ const Login = () => {
     }
   };
 
+  const isCreatedPassword = Boolean(location.state === 'Password created');
+
   if (isAuth) {
     return <Navigate to="/" />;
   }
 
   return (
     <Paper classes={{ root: styles.root }}>
+      {isCreatedPassword && (
+        <Typography classes={{ root: styles.success }} variant="h5">
+          Пароль создан. Войдите в аккаунт!
+        </Typography>
+      )}
       <Typography classes={{ root: styles.title }} variant="h5">
         Вход в аккаунт
       </Typography>
@@ -62,7 +71,7 @@ const Login = () => {
           helperText={errors.email?.message}
           {...register('email', {
             required: 'Укажите почту',
-            pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, message: 'Неверный формат' },
+            pattern: { value: /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/, message: 'Неверный формат' },
           })}
           fullWidth
           type="email"
@@ -74,11 +83,18 @@ const Login = () => {
           helperText={errors.password?.message}
           {...register('password', { required: 'Укажите пароль' })}
           fullWidth
+          type="password"
+          autoComplete="current-password"
         />
         <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
           Войти
         </Button>
       </form>
+      <Link to="/remember">
+        <Typography classes={{ root: styles.error }} variant="h5">
+          Remember my password!
+        </Typography>
+      </Link>
     </Paper>
   );
 };

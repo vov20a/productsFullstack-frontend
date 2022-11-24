@@ -10,7 +10,7 @@ export const fetchCategories = createAsyncThunk('categories/fetchCategories', as
 
 const initialState = {
   categories: categoriesLS(),
-  categoriesStatus: 'loading',
+  categoriesStatus: categoriesLS() ? 'loaded' : 'loading',
 };
 const categoriesSlice = createSlice({
   name: 'categories',

@@ -23,9 +23,9 @@ const Register = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      fullName: '',
+      fullName: 'Petr',
       email: 'petr@mail.ru',
-      password: 1234,
+      password: 123456,
       avatarUrl: '',
     },
     //valid after change somthing in form
@@ -96,6 +96,8 @@ const Register = () => {
             minLength: { value: 6, message: 'Min length 6' },
           })}
           fullWidth
+          type="password"
+          autoComplete="current-password"
         />
 
         <TextField

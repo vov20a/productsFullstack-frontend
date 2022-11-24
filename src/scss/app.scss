@@ -3,8 +3,11 @@
 
 @import './components/all';
 
+// body {
+//   background-color: $background;
+// }
 body {
-  background-color: $background;
+  background-color: #fff;
 }
 
 .wrapper {
@@ -33,6 +36,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .content__title-order {
+      background-color: lightskyblue;
+      padding: 5px;
+      color: rgb(239, 231, 231);
+      margin: 5px auto;
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 

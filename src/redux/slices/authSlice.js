@@ -14,6 +14,19 @@ export const fetchRegister = createAsyncThunk('auth/fetchRegister', async (param
   return data;
 });
 
+export const fetchRestorePassword = createAsyncThunk(
+  'auth/fetchRestorePassword',
+  async (params) => {
+    const { data } = await axios.post('/auth/restore', params);
+    return data;
+  },
+);
+
+export const fetchUpdatePassword = createAsyncThunk('auth/fetchUpdatePassword', async (params) => {
+  const { data } = await axios.post('/auth/password', params);
+  return data;
+});
+
 const initialState = {
   data: null,
   status: 'loading',
@@ -31,6 +44,7 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
+    //login
     [fetchAuth.pending]: (state) => {
       state.data = null;
       state.status = 'loading';

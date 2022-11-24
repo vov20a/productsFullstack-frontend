@@ -1,25 +1,48 @@
-import { type } from '@testing-library/user-event/dist/type';
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { addItem } from '../../redux/slices/cartSlice';
+import { getCountByIdProduct } from '../../utils/getCountByIdProduct';
 
-const typeValue = ['тонкое', 'традиционное'];
+export const typeValue = ['тонкое', 'традиционное'];
 
-const PizzaBlock = ({ title, productUrl, price, sizes, types }) => {
+const PizzaBlock = ({ _id, title, productUrl, price, sizes, types }) => {
+  const dispatch = useDispatch();
+
   const [sizeId, setSizeId] = React.useState(0);
   const [typeId, setTypeId] = React.useState(() => (types[0] === 1 ? 1 : 0));
+
+  const { items } = useSelector((state) => state.cart);
+  //выбираем только по id(size, type не учитываем)
+  const addedCount = getCountByIdProduct(items, _id);
+
+  const clickAddItem = () => {
+    const item = {
+      _id,
+      title,
+      productUrl,
+      price,
+      size: sizes[sizeId],
+      type: typeValue[typeId],
+    };
+    dispatch(addItem(item));
+  };
 
   // console.log(typeof _id.valueOf());
 
   return (
     <div className="pizza-block">
-      <img className="pizza-block__image" src={productUrl} alt="Pizza" />
-      <h4 className="pizza-block__title">{title}</h4>
+      <Link to={`/single/${_id}`}>
+        <img className="pizza-block__image" src={productUrl} alt="Pizza" />
+        <h4 className="pizza-block__title">{title}</h4>
+      </Link>
       <div className="pizza-block__selector">
         <ul>
           {types.map((type) => (
             <li
               key={type}
               onClick={() => setTypeId(type)}
-              className={type === typeId ? 'active' : ''}>
+              className={type == typeId ? 'active' : ''}>
               {typeValue[type]}
             </li>
           ))}
@@ -37,7 +60,7 @@ const PizzaBlock = ({ title, productUrl, price, sizes, types }) => {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <div onClick={clickAddItem} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -50,7 +73,7 @@ const PizzaBlock = ({ title, productUrl, price, sizes, types }) => {
             />
           </svg>
           <span>Добавить</span>
-          <i>0</i>
+          {addedCount > 0 && <i>{addedCount}</i>}
         </div>
       </div>
     </div>
