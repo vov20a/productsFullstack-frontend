@@ -46,12 +46,13 @@ function App() {
   const isAuth = useSelector(selectIsAuth);
   const user = useSelector(dataUser);
 
-  const isAdmin = React.useMemo(() => {
-    if (window.localStorage.getItem('adminPath')) {
-      location.pathname = window.localStorage.getItem('adminPath');
-    }
-    return user?.role === 'admin';
-  }, [user]);
+  //  = React.useMemo(() => {
+  //   if (window.localStorage.getItem('adminPath')) {
+  //     location.pathname = window.localStorage.getItem('adminPath');
+  //   }
+  //   return user?.role === 'admin';
+  // }, [user]);
+  const isAdmin = true;
 
   const email = window.localStorage.getItem('restoreEmail');
   const isEmail = email ? true : false;
