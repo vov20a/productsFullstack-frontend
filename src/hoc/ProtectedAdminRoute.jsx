@@ -2,11 +2,8 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 export const ProtectedAdminRoute = ({ isAdmin, redirectPath = '/', adminPath, children }) => {
   if (!isAdmin) {
-    // window.localStorage.setItem('adminPath', adminPath);
-    window.localStorage.setItem(
-      'adminPath',
-      'https://brilliant-bombolone-079ee7.netlify.app/admin/',
-    );
+    window.localStorage.setItem('adminPath', adminPath);
+
     return <Navigate to={redirectPath} replace />;
   }
 

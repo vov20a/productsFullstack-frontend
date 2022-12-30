@@ -90,9 +90,9 @@ function App() {
           <Route
             path="admin"
             element={
-              <ProtectedAdminRoute isAdmin={true} adminPath={location.pathname}>
-                <LayoutAdmin />
-              </ProtectedAdminRoute>
+              // <ProtectedAdminRoute isAdmin={true} adminPath={location.pathname}>
+              <LayoutAdmin />
+              // </ProtectedAdminRoute>
             }>
             <Route index element={<Main />} />
             <Route path="all-users" element={<AllUsers />} />
