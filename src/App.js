@@ -59,7 +59,7 @@ function App() {
   if (useSelector(dataStatus) === 'loading') {
     return <Loader />;
   }
-  // console.log('render');
+  console.log('render');
   return (
     <div className="wrapper">
       <Routes>
@@ -90,9 +90,9 @@ function App() {
           <Route
             path="admin"
             element={
-              // <ProtectedAdminRoute isAdmin={true} adminPath={location.pathname}>
-              <LayoutAdmin />
-              // </ProtectedAdminRoute>
+              <ProtectedAdminRoute isAdmin={isAdmin} adminPath={location.pathname}>
+                <LayoutAdmin />
+              </ProtectedAdminRoute>
             }>
             <Route index element={<Main />} />
             <Route path="all-users" element={<AllUsers />} />

@@ -133,7 +133,7 @@ const AddProduct = () => {
     const params = {
       ...values,
       categoryId: categoryObj._id,
-      // productUrl: isEditting ? productUrl : 'http://localhost:4444' + productUrl,
+      //productUrl: isEditting ? productUrl : 'http://localhost:4444' + productUrl,
       productUrl: isEditting ? productUrl : process.env.REACT_APP_API_URL + productUrl,
     };
 
