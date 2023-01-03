@@ -88,10 +88,11 @@ function App() {
               </ProtectedCreatePassword>
             }
           /> */}
-          {/* {isEmail ? ( */}
-          <Route path="password" element={<CreatePassword />} />
-          {/*) : (  <Route path="password" element={<NotFoundPage />} />*/}
-          {/* )}*/}
+          {isEmail ? (
+            <Route path="password" element={<CreatePassword />} />
+          ) : (
+            <Route path="password" element={<NotFoundPage />} />
+          )}
           <Route path="cart" element={<Cart />} />
           <Route path="single/:id" element={<FullPizza />} />
           <Route path="add-order" element={<CreateOrder />} />
