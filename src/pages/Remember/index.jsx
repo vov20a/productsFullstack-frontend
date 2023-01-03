@@ -20,7 +20,7 @@ const Remember = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      email: 'petr@mail.ru',
+      email: '',
     },
     //valid after change somthing in form
     mode: 'onChange',
@@ -38,7 +38,7 @@ const Remember = () => {
     const params = { email: data.payload, date: date };
     window.localStorage.setItem('restoreEmail', JSON.stringify(params));
 
-    navigate('/');
+    navigate('/', { state: 'sendEmail' });
   };
 
   return (

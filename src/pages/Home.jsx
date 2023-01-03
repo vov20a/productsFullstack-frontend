@@ -99,6 +99,11 @@ const Home = () => {
             <h2 className="content__title-order">Заказ принят!</h2>
           </div>
         )}
+        {location.state === 'sendEmail' && (
+          <div className="content__top">
+            <h2 className="content__title-order">На Ваш Email отправлено письмо !</h2>
+          </div>
+        )}
         <div className="content__top">
           <h2 className="content__title">Все пиццы</h2>
           <Search />

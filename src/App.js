@@ -47,9 +47,9 @@ function App() {
   const user = useSelector(dataUser);
 
   const isAdmin = React.useMemo(() => {
-    if (window.localStorage.getItem('adminPath')) {
-      location.pathname = window.localStorage.getItem('adminPath');
-    }
+    // if (window.localStorage.getItem('adminPath')) {
+    //   location.pathname = window.localStorage.getItem('adminPath');
+    // }
     return user?.role === 'admin';
   }, [user]);
 
@@ -59,7 +59,7 @@ function App() {
   if (useSelector(dataStatus) === 'loading') {
     return <Loader />;
   }
-  console.log('render');
+  // console.log('render');
   return (
     <div className="wrapper">
       <Routes>
@@ -67,27 +67,37 @@ function App() {
           <Route index element={<Home />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route
+          {/* <Route
             path="remember"
             element={
               <ProtectedAuthRoute isAuth={isAuth}>
                 <Remember />
               </ProtectedAuthRoute>
             }
-          />
-          <Route
+          /> */}
+          {!isAuth ? (
+            <Route path="remember" element={<Remember />} />
+          ) : (
+            <Route path="remember" element={<NotFoundPage />} />
+          )}
+          {/* <Route
             path="password"
             element={
               <ProtectedCreatePassword isEmail={isEmail}>
                 <CreatePassword />
               </ProtectedCreatePassword>
             }
-          />
+          /> */}
+          {isEmail ? (
+            <Route path="password" element={<CreatePassword />} />
+          ) : (
+            <Route path="password" element={<NotFoundPage />} />
+          )}
           <Route path="cart" element={<Cart />} />
           <Route path="single/:id" element={<FullPizza />} />
           <Route path="add-order" element={<CreateOrder />} />
 
-          <Route
+          {/* <Route
             path="admin"
             element={
               <ProtectedAdminRoute isAdmin={isAdmin} adminPath={location.pathname}>
@@ -107,7 +117,26 @@ function App() {
             <Route path="all-orders/:id" element={<AllOrders />} />
             <Route path="add-order" element={<AddOrder />} />
             <Route path="one-order/:id" element={<OneOrder />} />
-          </Route>
+          </Route> */}
+          {isAdmin ? (
+            <Route path="/admin" element={<LayoutAdmin />}>
+              <Route index element={<Main />} />
+              <Route path="all-users" element={<AllUsers />} />
+              <Route path="all-users/:id" element={<AllUsers />} />
+              <Route path="add-user" element={<AddUser />} />
+              <Route path="edit-user/:id" element={<AddUser />} />
+              <Route path="all-products" element={<AllProducts />} />
+              <Route path="all-products/:id" element={<AllProducts />} />
+              <Route path="add-product" element={<AddProduct />} />
+              <Route path="edit-product/:id" element={<AddProduct />} />
+              <Route path="all-orders" element={<AllOrders />} />
+              <Route path="all-orders/:id" element={<AllOrders />} />
+              <Route path="add-order" element={<AddOrder />} />
+              <Route path="one-order/:id" element={<OneOrder />} />
+            </Route>
+          ) : (
+            <Route path="/admin" element={<NotFoundPage />} />
+          )}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
