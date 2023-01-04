@@ -38,15 +38,18 @@ const AddProduct = () => {
   const [category, setCategory] = React.useState('');
   const [productUrl, setProductUrl] = React.useState('');
 
+  // console.log(productUrl);
+
   const inputFileRef = React.useRef();
   const handleChangeFile = async (event) => {
     try {
       const formData = new FormData();
       const file = event.target.files[0];
       formData.append('image', file);
+
       const { data } = await axios.post('/upload', formData);
       // console.log(data.URL);
-      setProductUrl(data.URL);
+      setProductUrl(process.env.REACT_APP_API_URL + data.URL);
     } catch (err) {
       console.warn(err);
       alert('Ошибка при загрузке файла');
@@ -134,9 +137,9 @@ const AddProduct = () => {
       ...values,
       categoryId: categoryObj._id,
       //productUrl: isEditting ? productUrl : 'http://localhost:4444' + productUrl,
-      productUrl: isEditting ? productUrl : process.env.REACT_APP_API_URL + productUrl,
+      productUrl: productUrl,
     };
-
+    // console.log(params);
     isEditting
       ? axios
           .patch(`/products/${id}`, params)
