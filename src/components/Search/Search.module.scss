@@ -35,3 +35,16 @@
     opacity: 0.8;
   }
 }
+@media screen and (max-width: 530px) {
+  .root {
+    padding: 5px 0 !important;
+  }
+  .input {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .input {
+    width: 100%;
+  }
+}
