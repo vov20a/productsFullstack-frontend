@@ -36,6 +36,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 20px 0;
     .content__title-order {
       background-color: lightskyblue;
       padding: 5px;
@@ -318,5 +319,140 @@ body {
       font-weight: 600;
       font-size: 18px;
     }
+  }
+}
+@media screen and (max-width: 790px) {
+  .container--cart {
+    margin: 10px auto;
+  }
+  .cart__top {
+    display: block;
+    width: 100%;
+  }
+  .cart .content__title {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+  }
+  .cart__clear {
+    display: block;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .cart__item-info h3 {
+    line-height: 18px;
+    font-size: 14px;
+  }
+  .cart__item-price b {
+    font-size: 16px;
+  }
+  .cart__bottom-details {
+    display: block;
+  }
+  .cart__bottom-details span {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  .cart__bottom-buttons {
+    display: block;
+  }
+  .cart__bottom-buttons .go-back-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .cart__bottom-buttons .pay-btn {
+    width: 100%;
+  }
+  .cart--empty {
+    width: 60%;
+  }
+  .cart--empty p {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .cart__item-info h3 {
+    line-height: 13px;
+    font-size: 11px;
+  }
+  .cart__item-info p {
+    font-size: 12px;
+  }
+  .button--circle {
+    width: 19px;
+    height: 19px;
+    min-width: 19px;
+  }
+  .cart--empty h2 {
+    font-size: 24px;
+  }
+  .cart__item-count b {
+    font-size: 16px;
+  }
+  .cart--empty img {
+    width: 235px;
+  }
+
+  .MuiPaper-root {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .content__items {
+    display: block;
+  }
+  .cart__item {
+    display: block;
+    width: 100%;
+  }
+  .cart__item-info {
+    width: 100%;
+    text-align: center;
+  }
+  .cart__item-count {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .cart__item-price {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .cart__item-remove {
+    display: block;
+    width: 100%;
+    margin: 7px 46%;
+  }
+  .cart__item-img {
+    display: block;
+    width: 100%;
+  }
+  .cart__item-img img {
+    width: 100%;
+    height: 100%;
+  }
+  .cart__bottom-buttons .pay-btn {
+    font-size: 13px;
+  }
+  .cart--empty img {
+    width: 200px;
+  }
+  .cart--empty .button--black {
+    width: 100%;
+    font-size: 13px;
+  }
+  .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    line-height: 10px;
+    font-size: 10px !important;
+  }
+  .css-ag7rrr-MuiTypography-root {
+    font-size: 14px !important;
   }
 }

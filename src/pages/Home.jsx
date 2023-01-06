@@ -105,7 +105,7 @@ const Home = () => {
           </div>
         )}
         <div className="content__top">
-          <h2 className="content__title">Все пиццы</h2>
+          {/* <h2 className="content__title">Все пиццы</h2> */}
           <Search />
         </div>
         <div className="content__items">

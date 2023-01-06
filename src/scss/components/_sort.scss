@@ -3,7 +3,7 @@
 .sort {
   position: relative;
   &__label {
-    display: flex;
+    // display: flex;
     align-items: center;
 
     svg {
@@ -49,5 +49,61 @@
         }
       }
     }
+  }
+}
+@media screen and (max-width: 992px) {
+  .content__top {
+    display: block !important;
+  }
+  .sort {
+    margin-top: 10px;
+  }
+  .sort__popup {
+    position: absolute;
+    left: 140px;
+    z-index: 2;
+  }
+  .categories ul {
+    font-size: 10px;
+  }
+  .Search_root__pPYb3 {
+    margin: 20px 0;
+  }
+}
+@media screen and (max-width: 742px) {
+  .categories ul li {
+    padding: 5px 17px;
+    border-radius: 20px;
+    margin-right: 1px;
+  }
+}
+@media screen and (max-width: 530px) {
+  .categories ul {
+    display: block;
+    width: 100%;
+  }
+  .content {
+    padding: 5px 0 !important;
+  }
+  .Search_input__XCsIL {
+    width: 300px;
+  }
+  .Search_input__XCsIL {
+    width: 100%;
+  }
+  .Pagination_root__nVnqZ {
+    font-size: 12px;
+  }
+  .Pagination_root__nVnqZ li a {
+    width: 25px;
+    line-height: 25px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Login_root__Fryxr {
+    width: 100%;
+    padding: 10px 10px;
   }
 }

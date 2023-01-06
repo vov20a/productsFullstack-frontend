@@ -1,7 +1,7 @@
 @import '../variables';
 
 .pizza-block {
-  width: 280px;
+  width: 250px;
   text-align: center;
   margin-bottom: 65px;
 
@@ -61,7 +61,7 @@
 
   &__price {
     font-weight: bold;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 27px;
     letter-spacing: 0.015em;
   }
