@@ -36,6 +36,7 @@ import './scss/app.scss';
 
 function App() {
   //auto login
+  // console.log(process.env);
   const dispatch = useDispatch();
   const location = useLocation();
 
