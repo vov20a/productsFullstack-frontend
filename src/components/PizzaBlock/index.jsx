@@ -33,7 +33,11 @@ const PizzaBlock = ({ _id, title, productUrl, price, sizes, types }) => {
   return (
     <div className="pizza-block">
       <Link to={`/single/${_id}`}>
-        <img className="pizza-block__image" src={productUrl} alt="Pizza" />
+        <img
+          className="pizza-block__image"
+          src={process.env.REACT_APP_API_URL + '/uploads/' + productUrl}
+          alt="Pizza"
+        />
         <h4 className="pizza-block__title">{title}</h4>
       </Link>
       <div className="pizza-block__selector">
@@ -42,7 +46,7 @@ const PizzaBlock = ({ _id, title, productUrl, price, sizes, types }) => {
             <li
               key={type}
               onClick={() => setTypeId(type)}
-              className={type == typeId ? 'active' : ''}>
+              className={type === typeId ? 'active' : ''}>
               {typeValue[type]}
             </li>
           ))}

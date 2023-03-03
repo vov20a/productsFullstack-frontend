@@ -55,7 +55,11 @@ function FullPizza() {
   return (
     <div className="container" style={{ padding: 10 }}>
       <div className="pizza-block">
-        <img className="pizza-block__image" src={pizza.productUrl} alt="Pizza" />
+        <img
+          className="pizza-block__image"
+          src={process.env.REACT_APP_API_URL + '/uploads/' + pizza.productUrl}
+          alt="Pizza"
+        />
         <h4 className="pizza-block__title">{pizza.title}</h4>
 
         <div className="pizza-block__selector">

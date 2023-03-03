@@ -16,7 +16,11 @@ const CartItem = ({ _id, title, price, size, type, productUrl, count }) => {
     <div className="cart__item">
       <Link to={`/single/${_id}`}>
         <div className="cart__item-img">
-          <img className="pizza-block__image" src={productUrl} alt="Pizza" />
+          <img
+            className="pizza-block__image"
+            src={process.env.REACT_APP_API_URL + '/uploads/' + productUrl}
+            alt="Pizza"
+          />
         </div>
       </Link>
       <div className="cart__item-info">
