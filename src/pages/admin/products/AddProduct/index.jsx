@@ -48,8 +48,8 @@ const AddProduct = () => {
       formData.append('image', file);
 
       const { data } = await axios.post('/upload', formData);
-      // console.log(data.URL);
-      setProductUrl(process.env.REACT_APP_API_URL + data.URL);
+
+      setProductUrl(data.URL.replace('/uploads/', ''));
     } catch (err) {
       console.warn(err);
       alert('Ошибка при загрузке файла');
@@ -295,7 +295,7 @@ const AddProduct = () => {
                 <Grid item md={8} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <img
                     style={{ width: 70, height: 70, alignItems: 'flex-end' }}
-                    src={productUrl}
+                    src={process.env.REACT_APP_API_URL + '/uploads/' + productUrl}
                     alt="Uploaded"
                   />
                 </Grid>

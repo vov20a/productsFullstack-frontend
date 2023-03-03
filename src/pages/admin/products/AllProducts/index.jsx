@@ -223,7 +223,10 @@ const AllProducts = () => {
                   <TableCell align="left">{product.title}</TableCell>
                   <TableCell align="right">
                     {product.productUrl ? (
-                      <img src={product.productUrl} style={{ height: 50 }} />
+                      <img
+                        src={process.env.REACT_APP_API_URL + '/uploads/' + product.productUrl}
+                        style={{ height: 50 }}
+                      />
                     ) : (
                       <AccountCircleIcon sx={{ height: 50 }} />
                     )}
