@@ -11,11 +11,11 @@ const Sort = ({ sortType, setSortType }) => {
   const [isOpen, setOpen] = React.useState(false);
   const dispatch = useDispatch();
 
-  const sortRef = React.useRef();
+  // const sortRef = React.useRef();
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.path.includes(sortRef.current)) {
+      if (event.target.nodeName === 'DIV') {
         setOpen(false);
       }
     };
@@ -32,7 +32,7 @@ const Sort = ({ sortType, setSortType }) => {
   };
   return (
     <div>
-      <div ref={sortRef} className="sort">
+      <div className="sort">
         <div className="sort__label">
           <svg
             width="10"
